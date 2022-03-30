@@ -14,8 +14,10 @@ import kotlinx.android.synthetic.main.fragment_first.view.*
 class FirstFragment : Fragment() {
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
@@ -25,17 +27,30 @@ class FirstFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val myview = inflater.inflate(R.layout.fragment_first, container, false)
+        var isChecked = true
+
         myview.avdImage.setOnClickListener{
-            CheckToClose()
+            if (isChecked)
+                checkToClose()
+            else
+                closeToCheck()
+
+            isChecked = !isChecked
         }
 
 
         return myview
     }
 
-    fun CheckToClose(){
+    private fun closeToCheck() {
+        avdImage.setImageResource(R.drawable.closetocheck)
+        val avdCheckToClose = avdImage.drawable as AnimatedVectorDrawable
+        avdCheckToClose.start()
+    }
+
+    fun checkToClose(){
         avdImage.setImageResource(R.drawable.checktoclose)
-        val avdchecktoclose : AnimatedVectorDrawable = avdImage.drawable as AnimatedVectorDrawable
+        val avdchecktoclose = avdImage.drawable as AnimatedVectorDrawable
         avdchecktoclose.start()
     }
 

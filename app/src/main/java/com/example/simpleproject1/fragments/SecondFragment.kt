@@ -8,14 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
 import com.example.simpleproject1.R
+import com.example.simpleproject1.databinding.FragmentSecondBinding
 import kotlinx.android.synthetic.main.fragment_second.*
 import kotlinx.android.synthetic.main.fragment_second.view.*
 
 
 class SecondFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
+    private var _binding : FragmentSecondBinding? = null
+    private val binding get() = _binding!!
+
+
+
+
 
 
 
@@ -24,18 +29,19 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val myview = inflater.inflate(R.layout.fragment_first, container, false)
-        val mediaController = MediaController(myview.context)
+        _binding = FragmentSecondBinding.inflate(inflater,container,false)
+        val mediaController = MediaController(context)
         mediaController.setAnchorView(videoview)
 
         val onlineuri = Uri.parse("http://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4")
 
-        myview.videoview.setMediaController(mediaController)
-        myview.videoview.setVideoURI(onlineuri)
-        myview.videoview.requestFocus()
-        myview.videoview.start()
+        binding.videoview.setMediaController(mediaController)
+        binding.videoview.setVideoURI(onlineuri)
+        binding.videoview.requestFocus()
+        binding.videoview.start()
 
-        return myview
+
+        return binding.root
     }
 
 
