@@ -31,7 +31,7 @@ class SecondFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSecondBinding.inflate(inflater,container,false)
         val mediaController = MediaController(context)
-        mediaController.setAnchorView(videoview)
+        mediaController.setAnchorView(binding.videoview)
 
         val onlineuri = Uri.parse("http://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4")
 
